@@ -252,8 +252,15 @@ if __name__ == '__main__':
     b.print_board()
     ca = CunningAnu(PieceColor.White)
     ca2 = CunningAnu(PieceColor.Black)
-    for i in range(100):
+    for i in range(200):
         ca.move(b.board)
         b.print_board()
+        if(b.check_win()):
+            print("White won the game")
+            break
         ca2.move(b.board)
         b.print_board()
+        if(b.check_win()):
+            print("Black won the game")
+            break
+        

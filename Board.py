@@ -56,8 +56,21 @@ class Board:
             print("-"*33)
         print("")
         
+    def check_win(self):
+        wk_there = False
+        bk_there = False
 
+        for i in range(8):
+            for j in range(8):
+                if(self.board[i][j].piece.type==PieceType.King and self.board[i][j].piece.color==PieceColor.White):
+                    wk_there = True
+                if(self.board[i][j].piece.type==PieceType.King and self.board[i][j].piece.color==PieceColor.Black):
+                    bk_there = True
 
+        if(wk_there == False or bk_there==False):
+            return True
+        else:
+            return False
     def __init__(self):
         self.board = [[0 for i in range(8)] for j in range(8)]
 
