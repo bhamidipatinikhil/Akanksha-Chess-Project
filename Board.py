@@ -46,14 +46,14 @@ class Board:
 
     def print_board(self):
         print("")
-        print("-" * 32)
+        print("-" * 33)
         for i in range(8):
             for j in range(8):
                 print("|", end= "")
-                print(self.return_str(self.board[i][j]), end=" ")
+                print(self.d[self.return_str(self.board[i][j])], end=" ")
                 # print("|", end="")
             print("|")
-            print("-"*32)
+            print("-"*33)
         print("")
         
 
@@ -61,6 +61,21 @@ class Board:
     def __init__(self):
         self.board = [[0 for i in range(8)] for j in range(8)]
 
+        self.d = {
+            "WP" : "\u2659 ",
+            "WR" : "\u2656 ",
+            "WN" : "\u2658 ",
+            "WB" : "\u2657 ",
+            "WK" : "\u2654 ",
+            "WQ" : "\u2655 ",
+            "BP" : "\u265F ",
+            "BR" : "\u265C ",
+            "BN" : "\u265E ",
+            "BB" : "\u265D ",
+            "BK" : "\u265A ",
+            "BQ" : "\u265B ",
+            "  " : "  "
+        }
         
         tmp_hybrid = SquarePieceHybrid(0, 0, PieceColor.Black, PieceType.Rook)
 
