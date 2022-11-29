@@ -77,9 +77,10 @@ class CunningAnu:
             for i in arr1:
                 for j in arr2:
                     if((i!= row or j!=col) and (i > -1 and i < 8) and (j > -1 and j < 8)):
-                        tmp_sq = Square(i, j)
-                        poss_squares.append(tmp_sq)
-                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(i, j)))
+                        if(board[i][j].piece.type == PieceType.Nill or board[i][j].piece.color == self.opp_color):
+                            tmp_sq = Square(i, j)
+                            poss_squares.append(tmp_sq)
+                            poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(i, j)))
                     
             pass
         elif sph.piece.type ==  PieceType.Queen:
@@ -96,7 +97,7 @@ class CunningAnu:
             for i in arr3:
                 tmp1 = row+i
                 if(tmp1 > -1 and tmp1 < 8):
-                    if(board[tmp1][col].piece.type == PieceType.Nill):
+                    if(board[tmp1][col].piece.type == PieceType.Nill or board[tmp1][col].piece.color == self.opp_color):
                         poss_squares.append(Square(tmp1, col))
                         poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, col)))
                     else:
@@ -105,12 +106,11 @@ class CunningAnu:
             for i in arr3:
                 tmp1 = col+i
                 if(tmp1 > -1 and tmp1 < 8):
-                    if(board[row][tmp1].piece.type == PieceType.Nill):
+                    if(board[row][tmp1].piece.type == PieceType.Nill or board[row][tmp1].piece.color == self.opp_color):
                         poss_squares.append(Square(row, tmp1))
                         poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(row, tmp1)))
                     else:
                         break
-            
             #Bishop time
             arr1 = [1, 2, 3, 4, 5, 6, 7]
             arr3 = [-1, -2, -3, -4, -5, -6, -7]
@@ -126,7 +126,7 @@ class CunningAnu:
                         ans1 = row+i
                         ans2 = col + j
                         if((ans1 > -1 and ans1 < 8) and (ans2 > -1 and ans2 < 8)):
-                            if(board[i][j].piece.type == PieceType.Nill):
+                            if(board[ans1][ans2].piece.type == PieceType.Nill or board[ans1][ans2].piece.color == self.opp_color):
                                 poss_squares.append(Square(ans1, ans2))
                                 poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(ans1, ans2)))
                             else:
@@ -148,7 +148,7 @@ class CunningAnu:
             for i in arr3:
                 tmp1 = row+i
                 if(tmp1 > -1 and tmp1 < 8):
-                    if(board[tmp1][col].piece.type == PieceType.Nill):
+                    if(board[tmp1][col].piece.type == PieceType.Nill or board[tmp1][col].piece.color == self.opp_color):
                         poss_squares.append(Square(tmp1, col))
                         poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, col)))
                     else:
@@ -157,7 +157,7 @@ class CunningAnu:
             for i in arr3:
                 tmp1 = col+i
                 if(tmp1 > -1 and tmp1 < 8):
-                    if(board[row][tmp1].piece.type == PieceType.Nill):
+                    if(board[row][tmp1].piece.type == PieceType.Nill or board[row][tmp1].piece.color == self.opp_color):
                         poss_squares.append(Square(row, tmp1))
                         poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(row, tmp1)))
                     else:
@@ -179,7 +179,7 @@ class CunningAnu:
                         ans1 = row+i
                         ans2 = col + j
                         if((ans1 > -1 and ans1 < 8) and (ans2 > -1 and ans2 < 8)):
-                            if(board[i][j].piece.type == PieceType.Nill):
+                            if(board[ans1][ans2].piece.type == PieceType.Nill or board[ans1][ans2].piece.color == self.opp_color):
                                 poss_squares.append(Square(ans1, ans2))
                                 poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(ans1, ans2)))
                             else:
@@ -202,9 +202,11 @@ class CunningAnu:
                         tmp2 = col + j
 
                         if((tmp1 > -1 and tmp1 < 8) and (tmp2 > -1 and tmp2 < 8)):
-                            tmp_sq = Square(tmp1, tmp2)
-                            poss_squares.append(tmp_sq)
-                            poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, tmp2)))
+                            if(board[tmp1][tmp2].piece.type == PieceType.Nill or board[tmp1][tmp2].piece.color == self.opp_color):
+                            
+                                tmp_sq = Square(tmp1, tmp2)
+                                poss_squares.append(tmp_sq)
+                                poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, tmp2)))
 
             pass
         elif sph.piece.type== PieceType.Pawn:
@@ -250,7 +252,7 @@ if __name__ == '__main__':
     b.print_board()
     ca = CunningAnu(PieceColor.White)
     ca2 = CunningAnu(PieceColor.Black)
-    for i in range(14):
+    for i in range(100):
         ca.move(b.board)
         b.print_board()
         ca2.move(b.board)
