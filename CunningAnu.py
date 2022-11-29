@@ -55,7 +55,7 @@ class CunningAnu:
         # print(f"The length of candidates is:: {len(candidate_moves)}")
         # print(f"The length of non candidtae moves is:: {len(non_cands)}")
         # print(candidate_moves)
-        candidate_moves = list(filter(lambda x: board[x.to_sq.row][x.to_sq.col].piece.type == PieceType.Nill, candidate_moves))
+        # candidate_moves = list(filter(lambda x: board[x.to_sq.row][x.to_sq.col].piece.type == PieceType.Nill, candidate_moves))
         # candidate_moves = list(filter(lambda x: self.not_crossing(x, board), candidate_moves))
         chosen_move = random.choice(candidate_moves)
         # print(type(chosen_move))
