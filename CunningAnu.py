@@ -18,19 +18,6 @@ class CunningAnu:
             self.opp_color = PieceColor.White
         
 
-    def not_crossing(self, x, board):
-        # x is a move type
-        pt = x.piece.type
-        pc = x.piece.color
-        from_sq = x.from_sq
-        to_sq = x.to_sq
-
-        if(pt != PieceType.Knight):
-            
-            pass
-        else:
-            return True
-
     def move(self, board):
         pieces = []
         candidate_moves = []
