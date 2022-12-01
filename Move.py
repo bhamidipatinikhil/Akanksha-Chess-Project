@@ -1,10 +1,4 @@
-from Board import *
-from Move import *
 from Piece import *
-from PieceColor import *
-from PieceType import *
-from Square import *
-from SquarePieceHybrid import *
 
 class Move:
     def __init__(self, piece, from_sq, to_sq):

@@ -1,9 +1,7 @@
-from Board import *
-from Move import *
-from Piece import *
+import codecs
+
 from PieceColor import *
 from PieceType import *
-from Square import *
 from SquarePieceHybrid import *
 
 class Board:
@@ -45,16 +43,21 @@ class Board:
 
 
     def print_board(self):
-        print("")
-        print("-" * 33)
-        for i in range(8):
-            for j in range(8):
-                print("|", end= "")
-                print(self.d[self.return_str(self.board[i][j])], end=" ")
-                # print("|", end="")
-            print("|")
-            print("-"*33)
-        print("")
+        with codecs.open("out.txt", 'a', "utf-8") as f:
+            f.write("\n")
+            f.write("-" * 33 + "\n")
+            for i in range(8):
+                for j in range(8):
+                    f.write("|")
+                    outit = self.d[self.return_str(self.board[i][j])]
+                    f.write(outit)
+                    if(outit=="  "):
+                        f.write(" ")
+                    # f.write(" ")
+                    # f.write("|")
+                f.write("|"+ "\n")
+                f.write("-"*33+ "\n")
+            f.write("\n")
         
     def check_win(self):
         wk_there = False

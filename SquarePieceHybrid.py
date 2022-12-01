@@ -1,10 +1,5 @@
-from Board import *
-from Move import *
 from Piece import *
-from PieceColor import *
-from PieceType import *
 from Square import *
-from SquarePieceHybrid import *
 
 
 

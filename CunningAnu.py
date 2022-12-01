@@ -1,4 +1,5 @@
 import random
+# import codecs
 
 from Board import *
 from Move import *
@@ -72,31 +73,62 @@ class CunningAnu:
             pass
         elif sph.piece.type ==  PieceType.Queen:
             # Rook moves
-            arr1 = [1, 2, 3, 4, 5, 6, 7]
-            arr2 = [1, -1]
+            arr3 = [1, 2, 3, 4, 5, 6, 7]
+            arr4 = [-1, -2, -3, -4, -5, -6, -7]
             row = sph.sq.row
             col = sph.sq.col
-            arr3 = []
-            for i in arr1:
-                for j in arr2:
-                    arr3.append(i*j)
-            
+            # prohibited = set()
             for i in arr3:
                 tmp1 = row+i
                 if(tmp1 > -1 and tmp1 < 8):
-                    if(board[tmp1][col].piece.type == PieceType.Nill or board[tmp1][col].piece.color == self.opp_color):
+                    if(board[tmp1][col].piece.type == PieceType.Nill):
                         poss_squares.append(Square(tmp1, col))
                         poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, col)))
-                    else:
+                    elif(board[tmp1][col].piece.color == self.opp_color):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, col)))
                         break
+                    elif(board[tmp1][col].piece.color == self.color):
+                        break
+            
+            for i in arr4:
+                tmp1 = row+i
+                if(tmp1 > -1 and tmp1 < 8):
+                    if(board[tmp1][col].piece.type == PieceType.Nill):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, col)))
+                    elif(board[tmp1][col].piece.color == self.opp_color):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, col)))
+                        break
+                    elif(board[tmp1][col].piece.color == self.color):
+                        break
+
             
             for i in arr3:
                 tmp1 = col+i
                 if(tmp1 > -1 and tmp1 < 8):
-                    if(board[row][tmp1].piece.type == PieceType.Nill or board[row][tmp1].piece.color == self.opp_color):
-                        poss_squares.append(Square(row, tmp1))
+                    if(board[row][tmp1].piece.type == PieceType.Nill):
+                        poss_squares.append(Square(tmp1, col))
                         poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(row, tmp1)))
-                    else:
+                    elif(board[row][tmp1].piece.color == self.opp_color):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(row, tmp1)))
+                        break
+                    elif(board[row][tmp1].piece.color == self.color):
+                        break
+            
+            for i in arr4:
+                tmp1 = col+i
+                if(tmp1 > -1 and tmp1 < 8):
+                    if(board[row][tmp1].piece.type == PieceType.Nill):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(row, tmp1)))
+                    elif(board[row][tmp1].piece.color == self.opp_color):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(row, tmp1)))
+                        break
+                    elif(board[row][tmp1].piece.color == self.color):
                         break
             #Bishop time
             arr_1 = [1, -1]
@@ -142,33 +174,63 @@ class CunningAnu:
             # print(poss_moves)
             pass
         elif sph.piece.type== PieceType.Rook:
-            arr1 = [1, 2, 3, 4, 5, 6, 7]
-            arr2 = [1, -1]
+            arr3 = [1, 2, 3, 4, 5, 6, 7]
+            arr4 = [-1, -2, -3, -4, -5, -6, -7]
             row = sph.sq.row
             col = sph.sq.col
-            arr3 = []
-            for i in arr1:
-                for j in arr2:
-                    arr3.append(i*j)
-            
+            # prohibited = set()
             for i in arr3:
                 tmp1 = row+i
                 if(tmp1 > -1 and tmp1 < 8):
-                    if(board[tmp1][col].piece.type == PieceType.Nill or board[tmp1][col].piece.color == self.opp_color):
+                    if(board[tmp1][col].piece.type == PieceType.Nill):
                         poss_squares.append(Square(tmp1, col))
                         poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, col)))
-                    else:
+                    elif(board[tmp1][col].piece.color == self.opp_color):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, col)))
                         break
+                    elif(board[tmp1][col].piece.color == self.color):
+                        break
+            
+            for i in arr4:
+                tmp1 = row+i
+                if(tmp1 > -1 and tmp1 < 8):
+                    if(board[tmp1][col].piece.type == PieceType.Nill):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, col)))
+                    elif(board[tmp1][col].piece.color == self.opp_color):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(tmp1, col)))
+                        break
+                    elif(board[tmp1][col].piece.color == self.color):
+                        break
+
             
             for i in arr3:
                 tmp1 = col+i
                 if(tmp1 > -1 and tmp1 < 8):
-                    if(board[row][tmp1].piece.type == PieceType.Nill or board[row][tmp1].piece.color == self.opp_color):
-                        poss_squares.append(Square(row, tmp1))
+                    if(board[row][tmp1].piece.type == PieceType.Nill):
+                        poss_squares.append(Square(tmp1, col))
                         poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(row, tmp1)))
-                    else:
+                    elif(board[row][tmp1].piece.color == self.opp_color):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(row, tmp1)))
                         break
-                    
+                    elif(board[row][tmp1].piece.color == self.color):
+                        break
+            
+            for i in arr4:
+                tmp1 = col+i
+                if(tmp1 > -1 and tmp1 < 8):
+                    if(board[row][tmp1].piece.type == PieceType.Nill):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(row, tmp1)))
+                    elif(board[row][tmp1].piece.color == self.opp_color):
+                        poss_squares.append(Square(tmp1, col))
+                        poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(row, tmp1)))
+                        break
+                    elif(board[row][tmp1].piece.color == self.color):
+                        break
             pass
         elif sph.piece.type== PieceType.Bishop:
             arr_1 = [1, -1]
@@ -239,29 +301,31 @@ class CunningAnu:
                 row = sph.sq.row
                 col = sph.sq.col
 
-                arr1 = [row-1]
-                arr2 = [col]
-                for i in arr1:
-                    for j in arr2:
-                        if((i > -1 and i < 8) and (j > -1 and j < 8)):
-                            if(board[i][j].piece.type == PieceType.Nill):
-                                tmp_sq = Square(i, j)
-                                poss_squares.append(tmp_sq)
-                                poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(i, j)))
+                i = row
+                j = col
+
+                if(i > 0 and board[i-1][j].piece.type == PieceType.Nill):
+                    poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(i-1, j)))
+                elif(i > 0 and j > 0 and board[i-1][j-1].piece.color == self.opp_color):
+                    poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(i-1, j-1)))
+                elif(i > 0 and j < 7 and board[i-1][j+1].piece.color == self.opp_color):
+                    poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(i-1, j+1)))
                 
             elif(sph.piece.color==PieceColor.Black):
                 row = sph.sq.row
                 col = sph.sq.col
 
-                arr1 = [row+1]
-                arr2 = [col]
-                for i in arr1:
-                    for j in arr2:
-                        if((i > -1 and i < 8) and (j > -1 and j < 8)):
-                            tmp_sq = Square(i, j)
-                            poss_squares.append(tmp_sq)
-                            poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(i, j)))
+                i = row
+                j = col
 
+                if(i < 7 and board[i+1][j].piece.type == PieceType.Nill):
+                    poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(i+1, j)))
+                elif(i < 7 and j > 0 and board[i+1][j-1].piece.color == self.opp_color):
+                    poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(i+1, j-1)))
+                elif(i < 7 and j < 7 and board[i+1][j+1].piece.color == self.opp_color):
+                    poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(i+1, j+1)))
+                
+            
         # print("Possible moves reached")
         return poss_moves
 
@@ -277,7 +341,7 @@ if __name__ == '__main__':
     b.print_board()
     ca = CunningAnu(PieceColor.White)
     ca2 = CunningAnu(PieceColor.Black)
-    for i in range(5):
+    for i in range(200):
         ca.move(b.board)
         b.print_board()
         if(b.check_win()):
