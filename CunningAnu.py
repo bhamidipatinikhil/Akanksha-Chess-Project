@@ -99,28 +99,47 @@ class CunningAnu:
                     else:
                         break
             #Bishop time
-            arr1 = [1, 2, 3, 4, 5, 6, 7]
-            arr3 = [-1, -2, -3, -4, -5, -6, -7]
-            arr1 = arr1 + arr3
-            arr3 = arr3 + arr1
+            arr_1 = [1, -1]
+            arr_2 = [1, -1]
+            arr1 = [1, -1]
+            arr2 = [1, -1]
             row = sph.sq.row
             col = sph.sq.col
-            tmp_arr = []
+            prohibited = set()
+            k=1
             break_outer = False
-            for i in arr1:
-                for j in arr3:
-                    if(abs(i)==abs(j)):
-                        ans1 = row+i
-                        ans2 = col + j
-                        if((ans1 > -1 and ans1 < 8) and (ans2 > -1 and ans2 < 8)):
-                            if(board[ans1][ans2].piece.type == PieceType.Nill or board[ans1][ans2].piece.color == self.opp_color):
-                                poss_squares.append(Square(ans1, ans2))
-                                poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(ans1, ans2)))
-                            else:
-                                break_outer = True
-                                break
-                if(break_outer):
-                    break
+
+            # print("I ran 1")
+            while(k < 7):
+                for indi, i in enumerate(arr1):
+                    for indj, j in enumerate(arr2):
+                        if(tuple([indi, indj]) not in prohibited):
+                            tmpi  = row+i
+                            tmpj = col + j
+                            if((tmpi > -1 and tmpi < 8) and (tmpj > -1 and tmpj < 8)):
+                                # print(tmpi, tmpj)
+                                if(board[tmpi][tmpj].piece.type == PieceType.Nill):
+                                    tmp_move = Move(sph.piece.color, sph.piece.type, Square(sph.sq.row, sph.sq.col), Square(tmpi, tmpj))
+                                    poss_squares.append(Square(tmpi, tmpj))
+                                    poss_moves.append(tmp_move)
+                                elif(board[tmpi][tmpj].piece.color==self.opp_color):   
+                                    poss_squares.append(Square(tmpi, tmpj))
+                                    tmp_move = Move(sph.piece.color, sph.piece.type, Square(sph.sq.row, sph.sq.col), Square(tmpi, tmpj))
+                                    poss_moves.append(tmp_move)
+                                    prohibited.add(tuple([indi, indj]))
+                                elif(board[tmpi][tmpj].piece.color==self.color):
+                                    prohibited.add(tuple([indi, indj]))
+                        # print(prohibited)
+                k+=1
+                for i in range(len(arr1)):
+                    arr1[i] = k*arr_1[i]
+                # print(arr1)
+                # arr2 = arr2*k
+                for i in range(len(arr2)):
+                    arr2[i] = k*arr_2[i]
+
+            # print("I ran 2")
+            # print(poss_moves)
             pass
         elif sph.piece.type== PieceType.Rook:
             arr1 = [1, 2, 3, 4, 5, 6, 7]
@@ -152,28 +171,47 @@ class CunningAnu:
                     
             pass
         elif sph.piece.type== PieceType.Bishop:
-            arr1 = [1, 2, 3, 4, 5, 6, 7]
-            arr3 = [-1, -2, -3, -4, -5, -6, -7]
-            arr1 = arr1 + arr3
-            arr3 = arr3 + arr1
+            arr_1 = [1, -1]
+            arr_2 = [1, -1]
+            arr1 = [1, -1]
+            arr2 = [1, -1]
             row = sph.sq.row
             col = sph.sq.col
-            tmp_arr = []
+            prohibited = set()
+            k=1
             break_outer = False
-            for i in arr1:
-                for j in arr3:
-                    if(abs(i)==abs(j)):
-                        ans1 = row+i
-                        ans2 = col + j
-                        if((ans1 > -1 and ans1 < 8) and (ans2 > -1 and ans2 < 8)):
-                            if(board[ans1][ans2].piece.type == PieceType.Nill or board[ans1][ans2].piece.color == self.opp_color):
-                                poss_squares.append(Square(ans1, ans2))
-                                poss_moves.append(Move(sph.piece.color, sph.piece.type, Square(row, col), Square(ans1, ans2)))
-                            else:
-                                break_outer = True
-                                break
-                if(break_outer):
-                    break
+
+            # print("I ran 1")
+            while(k < 7):
+                for indi, i in enumerate(arr1):
+                    for indj, j in enumerate(arr2):
+                        if(tuple([indi, indj]) not in prohibited):
+                            tmpi  = row+i
+                            tmpj = col + j
+                            if((tmpi > -1 and tmpi < 8) and (tmpj > -1 and tmpj < 8)):
+                                # print(tmpi, tmpj)
+                                if(board[tmpi][tmpj].piece.type == PieceType.Nill):
+                                    tmp_move = Move(sph.piece.color, sph.piece.type, Square(sph.sq.row, sph.sq.col), Square(tmpi, tmpj))
+                                    poss_squares.append(Square(tmpi, tmpj))
+                                    poss_moves.append(tmp_move)
+                                elif(board[tmpi][tmpj].piece.color==self.opp_color):   
+                                    poss_squares.append(Square(tmpi, tmpj))
+                                    tmp_move = Move(sph.piece.color, sph.piece.type, Square(sph.sq.row, sph.sq.col), Square(tmpi, tmpj))
+                                    poss_moves.append(tmp_move)
+                                    prohibited.add(tuple([indi, indj]))
+                                elif(board[tmpi][tmpj].piece.color==self.color):
+                                    prohibited.add(tuple([indi, indj]))
+                        # print(prohibited)
+                k+=1
+                for i in range(len(arr1)):
+                    arr1[i] = k*arr_1[i]
+                # print(arr1)
+                # arr2 = arr2*k
+                for i in range(len(arr2)):
+                    arr2[i] = k*arr_2[i]
+
+            # print("I ran 2")
+            # print(poss_moves)
             pass
         elif sph.piece.type== PieceType.Knight:
             row = sph.sq.row
@@ -239,7 +277,7 @@ if __name__ == '__main__':
     b.print_board()
     ca = CunningAnu(PieceColor.White)
     ca2 = CunningAnu(PieceColor.Black)
-    for i in range(200):
+    for i in range(5):
         ca.move(b.board)
         b.print_board()
         if(b.check_win()):

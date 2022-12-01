@@ -13,7 +13,7 @@ class Move:
         self.to_sq = to_sq
 
     def __repr__(self):
-        return f"Piece: {self.piece.color}{self.piece.type}   From: {self.from_sq.row}{self.from_sq.col}   To: {self.to_sq.row}{self.to_sq.col}\n"
+        return f"Color: {self.piece.color}| Type: {self.piece.type}   From: {self.from_sq.row}{self.from_sq.col}   To: {self.to_sq.row}{self.to_sq.col}\n"
 
 
     def __init__(self, piece_color, piece_type, from_sq, to_sq):
